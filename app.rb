@@ -47,8 +47,8 @@ class HangpersonApp < Sinatra::Base
       flash[:message] = 'Invalid guess.'
     end
 
-    flash[:message] = 'Invalid guess.' unless result
-#    flash[:message] = 'You have already used that letter.' unless result
+#    flash[:message] = 'Invalid guess.' unless result
+    flash[:message] = 'You have already used that letter.' unless result
 
     redirect '/show'
   end
