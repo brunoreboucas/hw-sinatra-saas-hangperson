@@ -31,7 +31,9 @@ class HangpersonGame
     letter.downcase!
     #if the letter is in the secret word and isn't a repeat guess, record the guess as right
     if word.include? letter
-      unless guesses.include? letter
+      if guesses.include? letter
+        return false
+      else
         guesses << letter
         for i in 0..word.length
           if word[i] == letter
@@ -41,6 +43,17 @@ class HangpersonGame
         end
         return true
       end
+
+#      unless guesses.include? letter
+#        guesses << letter
+#        for i in 0..word.length
+#          if word[i] == letter
+#            word_with_guesses[i] = letter
+#            @check_win_or_lose = :win if !word_with_guesses.include? '-'
+#          end
+#        end
+#        return true
+#      end
     #else if the letter is not in the secret word and isn't a repeat guess, record the guess as wrong
     else
 #      unless wrong_guesses.include? letter
