@@ -25,6 +25,7 @@ class HangpersonGame
     #raise ArgumentError if letter is nil or not a letter
     raise ArgumentError if letter.nil?
     raise ArgumentError if letter == ''
+    raise ArgumentError if letter == ' '
     raise ArgumentError if !letter.match(/[a-zA-Z]/)
     
     letter.downcase!
