@@ -40,7 +40,7 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
 #    letter = params[:guess].to_s[0]
     if params[:guess].empty? || params[:guess].to_s[0] == ' ' || params[:guess].to_s =~ /[^a-zA-Z]+/
-      flash[:message] = "Invalid guess"
+      flash[:message] = "Invalid guess."
       redirect '/show'
     else
       letter = params[:guess].to_s[0]
