@@ -29,9 +29,6 @@ class HangpersonGame
     
     letter.downcase!
     #if the letter is in the secret word and isn't a repeat guess, record the guess as right
-    if wrong_guesses.include?(letter) || guesses.include?(letter)
-      return false
-    end
     if word.include? letter
       unless guesses.include? letter
         guesses << letter
@@ -45,7 +42,8 @@ class HangpersonGame
       end
     #else if the letter is not in the secret word and isn't a repeat guess, record the guess as wrong
     else
-      unless wrong_guesses.include? letter
+      unless wrong_guesses.include?(letter) || guesses.include?(letter)
+#        guesses << letter
         wrong_guesses << letter
         if wrong_guesses.size >= 7
           @check_win_or_lose = :lose
@@ -54,6 +52,7 @@ class HangpersonGame
       end
     end
     #else it is a repeat guess and we must return false
+#    guesses << letter
     return false
   end
   
