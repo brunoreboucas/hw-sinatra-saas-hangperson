@@ -30,6 +30,7 @@ class HangpersonGame
     
     raise ArgumentError if new_guess.nil?
     raise ArgumentError if new_guess.empty?
+    raise ArgumentError if new_guess == ''
     raise ArgumentError if new_guess =~ /[^a-zA-Z]+/
     
     new_guess.downcase!
