@@ -43,7 +43,16 @@ class HangpersonGame
       end
     #else if the letter is not in the secret word and isn't a repeat guess, record the guess as wrong
     else
-      unless wrong_guesses.include? letter
+#      unless wrong_guesses.include? letter
+#        wrong_guesses << letter
+#        if wrong_guesses.size >= 7
+#          @check_win_or_lose = :lose
+#        end
+#        return true
+#      end
+      if wrong_guesses.include? letter
+        return false
+      else
         wrong_guesses << letter
         if wrong_guesses.size >= 7
           @check_win_or_lose = :lose
