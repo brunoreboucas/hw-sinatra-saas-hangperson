@@ -21,7 +21,6 @@ class HangpersonGame
     @check_win_or_lose = :play
   end
   
-  
   def guess(letter)
     #raise ArgumentError if letter is nil or not a letter
     raise ArgumentError if letter.nil?
@@ -30,10 +29,11 @@ class HangpersonGame
     
     letter.downcase!
     #if the letter is in the secret word and isn't a repeat guess, record the guess as right
+    if wrong_guesses.include?(letter) || guesses.include?(letter)
+      return false
+    end
     if word.include? letter
-      if guesses.include? letter
-        return false
-      else
+      unless guesses.include? letter
         guesses << letter
         for i in 0..word.length
           if word[i] == letter
@@ -43,44 +43,19 @@ class HangpersonGame
         end
         return true
       end
-
-#      unless guesses.include? letter
-#        guesses << letter
-#        for i in 0..word.length
-#          if word[i] == letter
-#            word_with_guesses[i] = letter
-#            @check_win_or_lose = :win if !word_with_guesses.include? '-'
-#          end
-#        end
-#        return true
-#      end
     #else if the letter is not in the secret word and isn't a repeat guess, record the guess as wrong
     else
-#      unless wrong_guesses.include? letter
-#        wrong_guesses << letter
-#        if wrong_guesses.size >= 7
-#          @check_win_or_lose = :lose
-#        end
-#        return true
-#      end
-      if wrong_guesses.include? letter
-        return false
-      else
+      unless wrong_guesses.include? letter
         wrong_guesses << letter
         if wrong_guesses.size >= 7
           @check_win_or_lose = :lose
         end
         return true
       end
-    return false
     end
     #else it is a repeat guess and we must return false
     return false
   end
-
-    
-
-
   
   # Random word grabber from the dictionary
   def self.get_random_word
