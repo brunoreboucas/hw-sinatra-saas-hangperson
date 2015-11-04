@@ -59,6 +59,7 @@ class HangpersonGame
         end
         return true
       end
+    return false
     end
     #else it is a repeat guess and we must return false
     return false
